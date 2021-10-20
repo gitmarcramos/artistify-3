@@ -5,11 +5,15 @@ const ArtistModel = require("./../model/Artist");
 const LabelModel = require("./../model/Label");
 const uploader = require("./../config/cloudinary");
 const protectAdminRoute = require("./../middlewares/protectAdminRoute");
+const protectRoute = require('./../middlewares/protectRoute')
 
 // router.use(protectAdminRoute);
 
 // GET - all albums
-router.get("/", async (req, res, next) => {
+router.get("/", protectRoute, async (req, res, next) => {
+
+  console.log('ta phrase préférée')
+
   try {
     res.render("dashboard/albums", {
       albums: await AlbumModel.find().populate("artist label"),
@@ -20,14 +24,14 @@ router.get("/", async (req, res, next) => {
 });
 
 // GET - create one album (form)
-router.get("/create", async (req, res, next) => {
+router.get("/create", protectRoute, async (req, res, next) => {
   const artists = await ArtistModel.find();
   const labels = await LabelModel.find();
   res.render("dashboard/albumCreate", { artists, labels });
 });
 
 // GET - update one album (form)
-router.get("/update/:id", async (req, res, next) => {
+router.get("/update/:id", protectRoute, async (req, res, next) => {
   try {
     const artists = await ArtistModel.find();
     const labels = await LabelModel.find();
@@ -39,7 +43,7 @@ router.get("/update/:id", async (req, res, next) => {
 });
 
 // GET - delete one album
-router.get("/delete/:id", async (req, res, next) => {
+router.get("/delete/:id",protectRoute, async (req, res, next) => {
   try {
     await AlbumModel.findByIdAndRemove(req.params.id);
     res.redirect("/dashboard/album");

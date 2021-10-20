@@ -3,7 +3,7 @@ const router = express.Router();
 const fileUploader = require("../config/cloudinary");
 const userModel = require("../model/user");
 const bcrypt = require("bcrypt");
-// const protectAuthRoute = require('./../middlewares/protecAuthRoute')
+
 
 // GET route signup
 router.get("/signup", (req, res) => {
