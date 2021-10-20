@@ -1,0 +1,19 @@
+<h1>Hello signup! </h1>
+
+
+{{!-- do not forget the enctype to be able to send files!! --}}
+<form method="post" action="/auth/signup" enctype="multipart/form-data">
+<label for="name">Name</label>
+  <input type="text" class="input" id="name" name="username"/>
+
+<label for=""></label>
+  <input type="email" class="input" name="email"/>
+
+<label for=""></label>
+  <input type="password" class="input" name="password"/>
+
+<label for=""></label>
+  <input type="file" class="input" name="avatar"/>
+
+  <button class="btn">Signup</button>
+</form>
